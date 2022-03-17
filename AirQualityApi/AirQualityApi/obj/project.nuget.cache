@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "K+zMRnGri75ghMY3GiLtrsYvYrHMrl6cPI8CYDcJHgW+lJljE2shFv94jpvchZdMieODafeHDAKI1ejZ4fEg/A==",
+  "dgSpecHash": "/+0hbPB9e1gw90nAUfQKNaj269yWJTwDnwCUqamB/9YoZ/EEN0blw4/50sTx52Cc7ICXsCtFfBLDSeoIxUeMLQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\source\\repos\\AirQualityApi\\AirQualityApi\\AirQualityApi.csproj",
+  "projectFilePath": "C:\\Users\\user\\GitHub\\AirQualityApp\\AirQualityAppAPI\\AirQualityApi\\AirQualityApi\\AirQualityApi.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

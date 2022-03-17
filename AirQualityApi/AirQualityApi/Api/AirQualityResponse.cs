@@ -16,6 +16,6 @@ namespace AirQualityApi.Api
         public AirQuality AirQuality { get; set; }
 
         public bool Success { get; }
-        public string[] Errors { get; }
+        public string[] Errors { get; set; }
     }
 }

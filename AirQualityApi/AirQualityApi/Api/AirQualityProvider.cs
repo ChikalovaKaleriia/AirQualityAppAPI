@@ -56,6 +56,7 @@ namespace AirQualityApi.Api
                                 Quality = value.Value
                             }
                         };
+
                     }
                 }
                 else
