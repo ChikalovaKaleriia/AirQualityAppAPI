@@ -1,6 +1,11 @@
-﻿using AirQualityApi.Api;
+﻿using AirQualityApi;
+using AirQualityApi.Models;
+using AirQualityApi.Models.Domain;
+using AirQualityApi.Provider;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +17,7 @@ namespace AirQualityApi.Controllers
     [Route("[controller]")]
     public class AirQualityController : ControllerBase
     {
+
         private readonly ILogger<AirQualityController> _logger;
 
         public AirQualityController(ILogger<AirQualityController> logger)
@@ -22,10 +28,9 @@ namespace AirQualityApi.Controllers
         [HttpGet("{city}")]
         public async Task<ActionResult<int>> Get(string city)
         {
-            var airQualityProvider = new AirQualityProvider();
-            var response = await airQualityProvider.GetCurrentQualityAsync(city);
-            return response.AirQuality.Quality;
+            var _airQualityProvider = new AirQualityProvider();
+            var _response = await _airQualityProvider.GetCurrentQualityAsync(city);
+            return _response.AirQuality.Quality;
         }
-       
     }
 }

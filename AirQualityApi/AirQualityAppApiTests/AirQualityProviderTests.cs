@@ -1,4 +1,5 @@
-using AirQualityApi.Api;
+using AirQualityApi;
+using AirQualityApi.Provider;
 using System;
 using Xunit;
 

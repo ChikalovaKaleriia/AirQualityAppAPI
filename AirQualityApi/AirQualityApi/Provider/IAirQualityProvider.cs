@@ -1,9 +1,10 @@
-﻿using System;
+﻿using AirQualityApi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AirQualityApi.Api
+namespace AirQualityApi.Provider
 {
     public interface IAirQualityProvider
     {

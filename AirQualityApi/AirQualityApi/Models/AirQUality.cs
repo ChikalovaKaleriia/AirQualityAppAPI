@@ -1,6 +1,6 @@
 using System;
 
-namespace AirQualityApi
+namespace AirQualityApi.Models
 {
     public class AirQuality
     {
