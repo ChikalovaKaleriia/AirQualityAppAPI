@@ -54,7 +54,7 @@ namespace AirQualityApi.Controllers
         [HttpDelete("{id}")]
         public async Task Delete(string id)
         {
-            var filter = new BsonDocument("Id", id);
+            var filter = new BsonDocument("_id", id);
             if (DB.UserSelectCollection.Find(filter).CountDocuments() != 0)
                 await DB.UserSelectCollection.DeleteOneAsync(filter);
         }
