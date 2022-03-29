@@ -7,6 +7,9 @@ namespace AirQualityApi.Models.Domain
 {
     public class UserSelection
     {
+        /// <summary>
+        /// Id of Selected City
+        /// </summary>
         public string Id { get; set; }
     }
 }

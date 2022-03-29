@@ -17,7 +17,6 @@ namespace AirQualityApi.Controllers
     [Route("[controller]")]
     public class AirQualityController : ControllerBase
     {
-
         private readonly ILogger<AirQualityController> _logger;
 
         public AirQualityController(ILogger<AirQualityController> logger)
