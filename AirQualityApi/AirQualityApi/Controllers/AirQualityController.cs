@@ -9,7 +9,9 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace AirQualityApi.Controllers
 {
@@ -18,10 +20,12 @@ namespace AirQualityApi.Controllers
     public class AirQualityController : ControllerBase
     {
         private readonly ILogger<AirQualityController> _logger;
-
-        public AirQualityController(ILogger<AirQualityController> logger)
+        BackgroundTask Background;
+        public AirQualityController(ILogger<AirQualityController> logger, BackgroundTask background)
         {
             _logger = logger;
+            Background = background;
+
         }
 
         [HttpGet("{city}")]
@@ -30,6 +34,15 @@ namespace AirQualityApi.Controllers
             var _airQualityProvider = new AirQualityProvider();
             var _response = await _airQualityProvider.GetCurrentQualityAsync(city);
             return _response.AirQuality.Quality;
+        }
+
+        [HttpPost]
+        public async Task Post()
+        {
+            if(BackgroundTask.IsStarted == false)
+            {
+                Background.backgroundTask.Start();
+            }
         }
     }
 }

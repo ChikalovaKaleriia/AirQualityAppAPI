@@ -11,6 +11,10 @@ namespace AirQualityApi.Models.Domain
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
+
+        /// <summary>
+        /// Id of the city
+        /// </summary>
         public string Id { get; set; }
 
         /// <summary>

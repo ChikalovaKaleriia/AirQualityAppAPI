@@ -78,3 +78,4 @@ C:\Users\user\GitHub\AirQualityApp\AirQualityAppAPI\AirQualityApi\AirQualityApi\
 C:\Users\user\GitHub\AirQualityApp\AirQualityAppAPI\AirQualityApi\AirQualityApi\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
 C:\Users\user\GitHub\AirQualityApp\AirQualityAppAPI\AirQualityApi\AirQualityApi\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\System.Windows.Extensions.dll
 C:\Users\user\GitHub\AirQualityApp\AirQualityAppAPI\AirQualityApi\AirQualityApi\obj\Debug\netcoreapp3.1\AirQualityApi.csproj.CopyComplete
+C:\Users\user\GitHub\AirQualityApp\AirQualityAppAPI\AirQualityApi\AirQualityApi\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll

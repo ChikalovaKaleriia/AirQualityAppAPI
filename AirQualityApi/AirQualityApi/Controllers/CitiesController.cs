@@ -1,5 +1,6 @@
 ﻿using AirQualityApi.Models;
 using AirQualityApi.Models.Domain;
+using AirQualityApi.WorkWithDB;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

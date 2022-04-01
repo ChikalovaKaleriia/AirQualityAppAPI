@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using AirQualityApi.WorkWithDB;
 
 namespace AirQualityApi.Controllers
 {
@@ -19,10 +20,11 @@ namespace AirQualityApi.Controllers
     public class UserSelectController : ControllerBase
     {
         private readonly ILogger<UserSelectController> _logger;
-
-        public UserSelectController(ILogger<UserSelectController> logger)
+        BackgroundTask Background;
+        public UserSelectController(ILogger<UserSelectController> logger, BackgroundTask background)
         {
             _logger = logger;
+            Background = background;
         }
 
         [HttpGet]
