@@ -1,4 +1,5 @@
 ﻿using AirQualityApi.Models.Domain;
+using AirQualityApi.WorkWithDB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
@@ -25,7 +26,8 @@ namespace AirQualityApi.Controllers
         [HttpGet]
         public async Task<ObservableCollection<SelectedCitiesAndStatistic>> GetName()
         {
-            GetStatistic getStatistic = new GetStatistic();
+            IDB _db = new DB();
+            GetStatistic getStatistic = new GetStatistic(_db);
 
             ObservableCollection<SelectedCitiesAndStatistic> statistic =  await getStatistic.GettingInfo();
             return statistic;

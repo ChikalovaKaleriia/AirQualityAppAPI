@@ -12,9 +12,14 @@ namespace AirQualityApi
 {
     public class GetStatistic
     {
+        public IDB db;
+
+        public GetStatistic(IDB _db)
+        {
+            db = _db;
+        }
         public async Task<ObservableCollection<SelectedCitiesAndStatistic>> GettingInfo()
         {
-            DB db = new DB();
             //Result 
             ObservableCollection<SelectedCitiesAndStatistic> SelectedCityInfo = new ObservableCollection<SelectedCitiesAndStatistic>();
 
@@ -45,7 +50,6 @@ namespace AirQualityApi
 
         public  List<string> GettingStatistic(string id)
         {
-            DB db = new DB();
             //Const description of statistic
             const string UNSTABLE = "Air Quality is unstable";
             const string STABILE = "Air Quality is stabile";

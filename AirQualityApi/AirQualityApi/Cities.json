@@ -1,0 +1,74 @@
+[
+  {
+    "Id": "623a13f2a4c14edcb3808a06",
+    "Name": "Athens"
+  },
+  {
+    "Id": "623a1421a4c14edcb3808a4a",
+    "Name": "Barcelona"
+  },
+  {
+    "Id": "623a1441a4c14edcb3808a8f",
+    "Name": "Berlin"
+  },
+  {
+    "Id": "623a145fa4c14edcb3808aa0",
+    "Name": "Budapest"
+  },
+  {
+    "Id": "623a1478a4c14edcb3808ab0",
+    "Name": "Copenhagen"
+  },
+  {
+    "Id": "623a148ea4c14edcb3808abe",
+    "Name": "Chicago"
+  },
+  {
+    "Id": "623a14a8a4c14edcb3808acf",
+    "Name": "Dublin"
+  },
+  {
+    "Id": "623a14c1a4c14edcb3808ade",
+    "Name": "Dnipro"
+  },
+  {
+    "Id": "623a14d8a4c14edcb3808aee",
+    "Name": "Istanbul"
+  },
+  {
+    "Id": "623a14f0a4c14edcb3808aff",
+    "Name": "Geneva"
+  },
+  {
+    "Id": "623a150aa4c14edcb3808b11",
+    "Name": "Kawasaki"
+  },
+  {
+    "Id": "623a1522a4c14edcb3808b20",
+    "Name": "Kiev"
+  },
+  {
+    "Id": "623a153ca4c14edcb3808b30",
+    "Name": "London"
+  },
+  {
+    "Id": "623a1553a4c14edcb3808b3e",
+    "Name": "Lisbon"
+  },
+  {
+    "Id": "623a1569a4c14edcb3808b4d",
+    "Name": "Madrid"
+  },
+  {
+    "Id": "623a1580a4c14edcb3808b60",
+    "Name": "Milan"
+  },
+  {
+    "Id": "623a1595a4c14edcb3808b6f",
+    "Name": "Sydney"
+  },
+  {
+    "Id": "623a15afa4c14edcb3808b7f",
+    "Name": "Warsaw"
+  }
+]
