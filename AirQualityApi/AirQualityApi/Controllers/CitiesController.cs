@@ -21,6 +21,7 @@ namespace AirQualityApi.Controllers
     public class CitiesController : ControllerBase
     {
         private readonly ILogger<CitiesController> _logger;
+        DB db = new DB();
 
         public CitiesController(ILogger<CitiesController> logger)
         {
@@ -30,7 +31,7 @@ namespace AirQualityApi.Controllers
         [HttpGet]  
         public async Task<List<City>> Get()
         {
-            var cities = await DB.collectionCity.Find(_ => true).ToListAsync();
+            var cities = await db.collectionCity.Find(_ => true).ToListAsync();
             if (cities != null)
             {
                 return cities;
@@ -39,8 +40,8 @@ namespace AirQualityApi.Controllers
             else
             {
                 ObservableCollection<City> citiesFromJson = await JsonReader.JsonReadAsync();
-                DB.collectionCity.InsertMany(citiesFromJson);
-                cities = await DB.collectionCity.Find(_ => true).ToListAsync();
+                db.collectionCity.InsertMany(citiesFromJson);
+                cities = await db.collectionCity.Find(_ => true).ToListAsync();
                 if (cities != null)
                 {
                     return cities;

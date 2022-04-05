@@ -20,41 +20,75 @@ namespace AirQualityApi
         /// </summary>
         private const int TIMER = 10000;
 
-        public static bool IsStarted { get; set; }
+        // all available cities (list cannot be changed by user)
+        private List<City> _allCities;
+        private List<UserSelection> _selectedCities;
+        private DB db = new DB();
 
-        public Task backgroundTask = new Task(async () => {
+        public bool IsStarted { get; private set; }
 
+        public void Run()
+        {
+            // make sure keeping statistic is not already started
+            if (IsStarted) return;
+
+            // run untracked task
+            // NOTE: usually tasks are controlled somehow.
+            // Now we can leave it as it is, but be careful with such using later
+            new Task(async () => await KeepStatistic()).Start();
+        }
+
+        public async void RefreshSelectedCitiesList()
+        {
+            // refresh list only in case when task is working
+            if (!IsStarted) return;
+
+            // selected cities for keeping statistic
+            _selectedCities = await db.GetSelectedCities();
+        }
+
+        private async Task KeepStatistic()
+        {
+            // make sure keeping statistic is not already started
+            if (IsStarted) return;
+
+            // keeping city statistic is started
             IsStarted = true;
-            //All records from UserSelect collection
-            var idsFromUserSelectedDb = DB.UserSelectCollection.Find(_ => true).ToList();
 
-            //All records from City collection
-            var allCities = DB.collectionCity.Find(_ => true).ToList();
+            // all existing cities
+            _allCities = await db.GetAllCities();
 
-            //Quality List for Id and AirQuality
-            List<Quality> airQualityForStatistic = new List<Quality>();
-            var _airQualityProvider = new AirQualityProvider();
+            // load selected cities list
+            RefreshSelectedCitiesList();
 
+            // air quality per city
+            var airQualityForStatistic = new List<Quality>();
+            var airQualityProvider = new AirQualityProvider();
 
+            // endless loop for keeping statistic 
             while (true)
             {
-                foreach (var ids in idsFromUserSelectedDb)
+                foreach (var ids in _selectedCities)
                 {
-                    //City with ids id
-                    var city = allCities.FirstOrDefault(x => x.Id == ids.Id);
+                    // load selected cities list
+                    RefreshSelectedCitiesList();
+                    // get city details
+                    var city = _allCities.FirstOrDefault(x => x.Id == ids.Id);
 
-                    var _response = await _airQualityProvider.GetCurrentQualityAsync(city.Name);
+                    // get air quality of the city
+                    var response = await airQualityProvider.GetCurrentQualityAsync(city.Name);
 
-                    //response with AirQuality
-                    int thisQuality = _response.AirQuality.Quality;
-
-                    //Adding new Quality to airQualityForStatistic List
-                    airQualityForStatistic.Add(new Quality { IdCity = city.Id, AirQuality = thisQuality });
+                    // add quality to the result list
+                    airQualityForStatistic.Add(new Quality { IdCity = city.Id, AirQuality = response.AirQuality.Quality });
                 }
-                //Inserting airQualityForStatistic List to AirQuality collection
-                DB.AirQualityCollection.InsertMany(airQualityForStatistic);
+
+                // save air quality per city into the database
+                await db.AirQualityCollection.InsertManyAsync(airQualityForStatistic);
+                // cleanup collection after saving the data
+                airQualityForStatistic.Clear();
+                // wait some time before the next loop iteration
                 await Task.Delay(TIMER);
             }
-        });
+        }
     }
 }

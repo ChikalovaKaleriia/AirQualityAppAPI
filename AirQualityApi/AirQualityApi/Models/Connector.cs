@@ -9,6 +9,20 @@ namespace AirQualityApi.Models
 {
     public class Connector
     {
-        public static string MongoDBConnectionString = ConfigurationManager.ConnectionStrings["MongoDBConnectionString"].ConnectionString;
+        private static Connector instance;
+        /// <summary>
+        /// Connection string to API 
+        /// </summary>
+        public string MongoDBConnectionString { get; private set; }
+        private Connector()
+        {
+            MongoDBConnectionString = ConfigurationManager.ConnectionStrings["MongoDBConnectionString"].ConnectionString;
+        }
+        public static Connector GetInstance()
+        {
+            if (instance == null)
+                instance = new Connector();
+            return instance;
+        }
     }
 }

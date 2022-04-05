@@ -29,20 +29,20 @@ namespace AirQualityApi.Controllers
         }
 
         [HttpGet("{city}")]
-        public async Task<ActionResult<int>> Get(string city)
+        public async Task<ActionResult<string>> Get(string city)
         {
             var _airQualityProvider = new AirQualityProvider();
             var _response = await _airQualityProvider.GetCurrentQualityAsync(city);
-            return _response.AirQuality.Quality;
+            if (_response.Errors != null)
+                return _response.Errors[0];
+
+            return _response.AirQuality.Quality.ToString();
         }
 
         [HttpPost]
-        public async Task Post()
+        public void Post()
         {
-            if(BackgroundTask.IsStarted == false)
-            {
-                Background.backgroundTask.Start();
-            }
+            Background.Run();
         }
     }
 }

@@ -40,6 +40,7 @@ namespace AirQualityApi.Provider
                     // check response is ok
                     if (airQualityApiResponse.status != "ok")
                         return new AirQualityResponse(airQualityApiResponse.status, airQualityApiResponse.data?.ToString());
+                   
 
                     // try to get required air quality value
                     var airQualityData = airQualityApiResponse.data is JsonElement

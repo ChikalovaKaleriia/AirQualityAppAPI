@@ -17,38 +17,26 @@ namespace AirQualityApi.WorkWithDB
 {
     public class DB : IDB
     {
+        static Connector connector = Connector.GetInstance();
+        #region Names
 
-        #region CityCollection
-
-        private static string databaseNameCity = "AirQualityApp";
-        private static string collectionNameCity = "City";
-
-        public static MongoClient clientCity = new MongoClient(Connector.MongoDBConnectionString);
-        public static IMongoDatabase dbCity = clientCity.GetDatabase(databaseNameCity);
-        public static IMongoCollection<City> collectionCity = dbCity.GetCollection<City>(collectionNameCity);
-
+        private const string databaseName = "AirQualityApp";
+        private const string collectionNameCity = "City";
+        private const string UserSelectcollectionName = "UserSelect";
+        private const string AirQualityCollectionName = "AirQuality";
         #endregion
 
-        #region UserSelectCollection
-
-        private static string databaseName = "AirQualityApp";
-        private static string UserSelectcollectionName = "UserSelect";
-
-        public static MongoClient client = new MongoClient(Connector.MongoDBConnectionString);
+        #region Client and Database
+        public static MongoClient client = new MongoClient(connector.MongoDBConnectionString);
         public static IMongoDatabase db = client.GetDatabase(databaseName);
-        public static IMongoCollection<UserSelection> UserSelectCollection = db.GetCollection<UserSelection>(UserSelectcollectionName);
-
         #endregion
 
-        #region AirQualityCollection
+        #region Collections
+        public IMongoCollection<City> collectionCity = db.GetCollection<City>(collectionNameCity);
 
-        private static string databaseAirQualityName = "AirQualityApp";
-        private static string AirQualityCollectionName = "AirQuality";
+        public IMongoCollection<UserSelection> UserSelectCollection = db.GetCollection<UserSelection>(UserSelectcollectionName);
 
-        public static MongoClient clientAQ = new MongoClient(Connector.MongoDBConnectionString);
-        public static IMongoDatabase dbAQ = client.GetDatabase(databaseAirQualityName);
-        public static IMongoCollection<Quality> AirQualityCollection = dbAQ.GetCollection<Quality>(AirQualityCollectionName);
-
+        public IMongoCollection<Quality> AirQualityCollection = db.GetCollection<Quality>(AirQualityCollectionName);
         #endregion
 
         #region Get-Methods

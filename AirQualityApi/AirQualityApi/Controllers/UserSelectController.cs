@@ -21,6 +21,7 @@ namespace AirQualityApi.Controllers
     {
         private readonly ILogger<UserSelectController> _logger;
         BackgroundTask Background;
+        DB db = new DB();
         public UserSelectController(ILogger<UserSelectController> logger, BackgroundTask background)
         {
             _logger = logger;
@@ -31,7 +32,7 @@ namespace AirQualityApi.Controllers
         public async Task<ObservableCollection<string>> Get()
         {
             ObservableCollection<string> selectedCities = new ObservableCollection<string>();
-            var Cities = await DB.UserSelectCollection.Find(_ => true).ToListAsync();
+            var Cities = await db.UserSelectCollection.Find(_ => true).ToListAsync();
             if (Cities != null)
             {
                 foreach (var c in Cities)
@@ -48,8 +49,8 @@ namespace AirQualityApi.Controllers
         {
             var filter = new BsonDocument("Id", Id);
             var record = new UserSelection { Id = Id };
-            if (DB.UserSelectCollection.Find(filter).CountDocuments() == 0)
-                await DB.UserSelectCollection.InsertOneAsync(record);
+            if (db.UserSelectCollection.Find(filter).CountDocuments() == 0)
+                await db.UserSelectCollection.InsertOneAsync(record);
 
         }
 
@@ -57,8 +58,8 @@ namespace AirQualityApi.Controllers
         public async Task Delete(string id)
         {
             var filter = new BsonDocument("_id", id);
-            if (DB.UserSelectCollection.Find(filter).CountDocuments() != 0)
-                await DB.UserSelectCollection.DeleteOneAsync(filter);
+            if (db.UserSelectCollection.Find(filter).CountDocuments() != 0)
+                await db.UserSelectCollection.DeleteOneAsync(filter);
         }
 
     }
